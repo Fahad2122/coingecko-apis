@@ -42,9 +42,9 @@ const getCirculatingSupply = async () => {
 app.get('/circulating', async (req, res) => {
     try {
         // const circulatingSupply = await getCirculatingSupply();
-        const circulatingSupply = BigInt(31760000*1e18);
-        const decimalCirculatingSupply = ethers.formatEther(circulatingSupply.toString());
-        res.json(decimalCirculatingSupply.toString());
+        // const circulatingSupply = BigInt(31760000*1e18);
+        // const decimalCirculatingSupply = ethers.formatEther(circulatingSupply.toString());
+        res.json("31760000.0");
     } catch (error) {
         console.error("Error fetching circulating supply:", error);
         res.status(500).json({ error: "Failed to fetch circulating supply" });
