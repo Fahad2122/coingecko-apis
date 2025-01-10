@@ -41,8 +41,10 @@ const getCirculatingSupply = async () => {
 
 app.get('/circulating', async (req, res) => {
     try {
-        const circulatingSupply = await getCirculatingSupply();
-        res.json({ result: circulatingSupply.toString() });
+        // const circulatingSupply = await getCirculatingSupply();
+        const circulatingSupply = BigInt(31760000*1e18);
+        const decimalCirculatingSupply = ethers.formatEther(circulatingSupply.toString());
+        res.json(decimalCirculatingSupply.toString());
     } catch (error) {
         console.error("Error fetching circulating supply:", error);
         res.status(500).json({ error: "Failed to fetch circulating supply" });
@@ -52,7 +54,8 @@ app.get('/circulating', async (req, res) => {
 app.get('/totalsupply', async (req, res) => {
     try {
         const totalSupply = await tokenContract.totalSupply();
-        res.send({ result: totalSupply.toString() });
+        const decimalSupply = ethers.formatEther(totalSupply);
+        res.json(decimalSupply.toString());
     } catch (error) {
         console.error("Error fetching total supply:", error);
         res.status(500).json({ error: "Failed to fetch total supply" });
